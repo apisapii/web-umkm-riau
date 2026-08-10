@@ -896,10 +896,10 @@ export default function App() {
 
           <nav className="desktop-nav">
             <a href="#hero">Beranda</a>
-            <a href="#bento">Komitmen Eco</a>
+            <a href="#bento">Komitmen Kami</a>
             <a href="#gallery">Galeri Alam</a>
-            <a href="#products">Paket Ekspedisi</a>
-            <a href="#merch">Souvenir Adat</a>
+            <a href="#products">Paket Wisata</a>
+            <a href="#merch">Souvenir</a>
             <a href="#faq">FAQ</a>
             <a href="#contact">Kontak</a>
           </nav>
