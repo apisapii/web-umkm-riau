@@ -38,7 +38,7 @@ const TOUR_PACKAGES = [
     priceUSD: 185,
     badge: "Carbon Neutral Trip",
     image: "https://images.unsplash.com/photo-1596394516093-501ba68a0ba6?auto=format&fit=crop&w=800&q=80",
-    description: "Menyusuri sungai hulu dengan perahu tradisional (Pancung), menginap di *eco-lodge* kayu ramah lingkungan, dan mempelajari kearifan adat masyarakat Kampar Kiri.",
+    description: "Menyusuri sungai hulu dengan perahu tradisional (Pancung), menginap di eco-lodge kayu ramah lingkungan, dan mempelajari kearifan adat masyarakat Kampar Kiri.",
     location: "Suaka Margasatwa Rimbang Baling",
     duration: "3 Hari 2 Malam",
     certification: "Zero Plastic & Local Powered"
@@ -70,13 +70,112 @@ const REVIEWS = [
   }
 ];
 
+// Komponen 3D Card Aceternity UI versi Vanilla CSS
+function ThreeDCard({ item, formatPrice, onSelectTour }) {
+  const [rotateX, setRotateX] = useState(0);
+  const [rotateY, setRotateY] = useState(0);
+  const [isHovered, setIsHovered] = useState(false);
+
+  const handleMouseMove = (e) => {
+    const card = e.currentTarget;
+    const rect = card.getBoundingClientRect();
+    const x = e.clientX - rect.left; 
+    const y = e.clientY - rect.top; 
+    
+    const centerX = rect.width / 2;
+    const centerY = rect.height / 2;
+
+    const rotX = ((y - centerY) / centerY) * -15; // Kemiringan sumbu X
+    const rotY = ((x - centerX) / centerX) * 15;  // Kemiringan sumbu Y
+
+    setRotateX(rotX);
+    setRotateY(rotY);
+  };
+
+  const handleMouseEnter = () => {
+    setIsHovered(true);
+  };
+
+  const handleMouseLeave = () => {
+    setIsHovered(false);
+    setRotateX(0);
+    setRotateY(0);
+  };
+
+  return (
+    <div 
+      className="card-container-3d"
+      onMouseMove={handleMouseMove}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+    >
+      <div 
+        className="card-body-3d"
+        style={{
+          transform: `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`,
+          transition: isHovered ? 'transform 0.1s ease-out' : 'transform 0.5s ease-out'
+        }}
+      >
+        {/* Layer 1: Badge */}
+        <div 
+          className="layer-translateZ flex-between" 
+          style={{ transform: isHovered ? 'translateZ(40px)' : 'translateZ(0px)' }}
+        >
+          <span className="category-tag">{item.category}</span>
+          <span className="product-badge-3d">{item.badge}</span>
+        </div>
+
+        {/* Layer 2: Judul Paket */}
+        <h3 
+          className="card-title-3d layer-translateZ"
+          style={{ transform: isHovered ? 'translateZ(60px)' : 'translateZ(0px)' }}
+        >
+          {item.name}
+        </h3>
+
+        {/* Layer 3: Gambar Paket (Sangat Timbul Melayang) */}
+        <div 
+          className="card-image-3d layer-translateZ"
+          style={{ 
+            transform: isHovered ? 'translateZ(100px)' : 'translateZ(0px)',
+            boxShadow: isHovered ? '0 20px 40px rgba(0,0,0,0.3)' : '0 8px 20px rgba(0,0,0,0.12)'
+          }}
+        >
+          <img src={item.image} alt={item.name} />
+        </div>
+
+        {/* Layer 4: Deskripsi */}
+        <p 
+          className="card-desc-3d layer-translateZ"
+          style={{ transform: isHovered ? 'translateZ(45px)' : 'translateZ(0px)' }}
+        >
+          {item.description}
+        </p>
+
+        {/* Layer 5: Footer & Tombol Reservasi */}
+        <div 
+          className="card-footer-3d layer-translateZ"
+          style={{ transform: isHovered ? 'translateZ(70px)' : 'translateZ(0px)' }}
+        >
+          <div>
+            <small>Mulai Dari / Orang</small>
+            <div className="price-tag">{formatPrice(item.priceUSD, item.priceIDR)}</div>
+          </div>
+          <button className="btn-buy" onClick={() => onSelectTour(item)}>
+            <Compass size={16} /> Reservasi
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export default function App() {
   const [currency, setCurrency] = useState('USD');
   const [mobileMenu, setMobileMenu] = useState(false);
   const [selectedTour, setSelectedTour] = useState(null);
   const [bookingSubmitted, setBookingSubmitted] = useState(false);
 
-  // Format Mata Uang
   const formatPrice = (usd, idr) => {
     return currency === 'USD' ? `$${usd} USD` : `Rp ${idr.toLocaleString('id-ID')}`;
   };
@@ -207,7 +306,7 @@ export default function App() {
         </div>
       </section>
 
-      {/* TOUR PACKAGES SECTION */}
+      {/* TOUR PACKAGES SECTION WITH 3D CARD ACETERNITY EFFECT */}
       <section id="products" className="products-section">
         <div className="section-header">
           <span>Katalog Ekspedisi</span>
@@ -216,26 +315,12 @@ export default function App() {
 
         <div className="products-grid">
           {TOUR_PACKAGES.map((item) => (
-            <div key={item.id} className="product-card">
-              <div className="card-image-wrapper">
-                <img src={item.image} alt={item.name} />
-                <span className="product-badge">{item.badge}</span>
-              </div>
-              <div className="card-body">
-                <span className="category-tag">{item.category}</span>
-                <h3>{item.name}</h3>
-                <p>{item.description}</p>
-                <div className="card-footer">
-                  <div>
-                    <small>Mulai Dari / Orang</small>
-                    <div className="price-tag">{formatPrice(item.priceUSD, item.priceIDR)}</div>
-                  </div>
-                  <button className="btn-buy" onClick={() => setSelectedTour(item)}>
-                    <Compass size={16} /> Reservasi
-                  </button>
-                </div>
-              </div>
-            </div>
+            <ThreeDCard 
+              key={item.id} 
+              item={item} 
+              formatPrice={formatPrice} 
+              onSelectTour={setSelectedTour} 
+            />
           ))}
         </div>
       </section>
@@ -313,7 +398,7 @@ export default function App() {
                 <CheckCircle size={48} className="success-icon" />
                 <h3>Permintaan Reservasi Terkirim!</h3>
                 <p>
-                  Terima kasih! Tim konsultan Riau Eco-Adventure akan menghubungi Anda via email dengan rincian *itinerary* dan instruksi penjemputan dari Bandara Sultan Syarif Kasim II Pekanbaru.
+                  Terima kasih! Tim konsultan Riau Eco-Adventure akan menghubungi Anda via email dengan rincian itinerary dan instruksi penjemputan dari Bandara Sultan Syarif Kasim II Pekanbaru.
                 </p>
                 <button className="btn-primary" onClick={closeModal}>Tutup</button>
               </div>
