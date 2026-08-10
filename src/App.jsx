@@ -1005,7 +1005,7 @@ export default function App() {
               <Award size={24} />
             </div>
             <span className="bento-tag">Dampak Komunitas</span>
-            <h3>25% Biaya Tur untuk Dana Konservasi & Desa Adat</h3>
+            <h3>25% of Tour Fees for Conservation Funds & Indigenous Villages</h3>
             <p>
               Setiap pemesanan tur langsung mendanai unit patroli penyelamatkan hutan hujan serta fasilitas sanitasi dan pendidikan desa di pelosok Riau.
             </p>
