@@ -1,0 +1,50 @@
+/* Custom CSS Variables - Melayu Riau Modern Palette */
+:root {
+  --bg-main: #FDFBF7;
+  --bg-dark: #0F172A;
+  --primary-gold: #D4AF37;
+  --primary-green: #0F5257;
+  --text-dark: #1E293B;
+  --text-light: #F8FAFC;
+  --accent-orange: #E65100;
+  --border-glass: rgba(212, 175, 55, 0.2);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--bg-main);
+  color: var(--text-dark);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  overflow-x: hidden;
+}
+
+/* Glassmorphism utility */
+.glass-card {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--border-glass);
+  border-radius: 16px;
+}
+
+.glass-dark {
+  background: rgba(15, 23, 42, 0.85);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: var(--text-light);
+  border-radius: 16px;
+}
+
+/* Animations without Tailwind */
+@keyframes pulseGlow {
+  0%, 100% { opacity: 0.4; transform: scale(1); }
+  50% { opacity: 0.8; transform: scale(1.05); }
+}
+
+.glow-effect {
+  animation: pulseGlow 4s infinite ease-in-out;
+}
