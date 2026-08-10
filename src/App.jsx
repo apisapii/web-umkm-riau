@@ -4,10 +4,15 @@ import { OrbitControls, Html, useTexture } from '@react-three/drei';
 import * as THREE from 'three';
 import { motion, AnimatePresence, useMotionValue, useSpring, useTransform, useVelocity, useAnimationControls, animate } from 'framer-motion';
 import { gsap } from 'gsap';
-import { Globe, Compass, Leaf, ShieldCheck, Heart, Menu, X, ArrowRight, Camera, Video, Share2, MessageCircle, Sparkles, Award, CheckCircle, Star, MapPin, Calendar, Clock, Plane, HelpCircle, ChevronDown, Check, Mail, Phone, Send, User, Move } from 'lucide-react';
+import { Globe, Compass, Leaf, ShieldCheck, Heart, Menu, X, ArrowRight, Camera, Video, Share2, MessageCircle, Sparkles, Award, CheckCircle, Star, MapPin, Calendar, Clock, Plane, HelpCircle, ChevronDown, Check, Mail, Phone, Send, User, Move, Waves, ShoppingBag } from 'lucide-react';
 
-// === 1. IMPORT LOGO KAKAK DI SINI ===
-import logoWeb from './LogoWeb.png'; 
+// === IMPORT ASSETS GAMBAR LOKAL DARI SRC/ ===
+import logoWeb from './LogoWeb.png';
+import imgKamparBono from './kamparbono.jpeg';
+import imgKamparKiri from './kamparkiri.jpeg';
+import imgRimbangBaling from './rimbangbaling.jpeg';
+import imgAmigurumi from './amigurumi.jpeg';
+import imgSyalTenun from './syal tenun.jpeg';
 
 import './App.css';
 
@@ -15,11 +20,11 @@ import './App.css';
 // REACT BITS ACCORDION GALLERY COMPONENT
 // ============================================================================
 const ACCORDION_ITEMS = [
-  { image: 'https://images.unsplash.com/photo-1502680390469-be75c86b636f?auto=format&fit=crop&w=900&q=80', label: 'Kampar Bono Wave' },
+  { image: imgKamparBono, label: 'Kampar Bono Wave' },
   { image: 'https://images.unsplash.com/photo-1557050543-4d5f4e07ef46?auto=format&fit=crop&w=900&q=80', label: 'Tesso Nilo Elephants' },
-  { image: 'https://images.unsplash.com/photo-1596394516093-501ba68a0ba6?auto=format&fit=crop&w=900&q=80', label: 'Rimbang Baling Eco-Lodge' },
+  { image: imgRimbangBaling, label: 'Rimbang Baling Eco-Lodge' },
   { image: 'https://images.unsplash.com/photo-1542273917363-3b1817f69a2d?auto=format&fit=crop&w=900&q=80', label: 'Hutan Hujan Gambut' },
-  { image: 'https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=900&q=80', label: 'Sungai Kampar Kiri' }
+  { image: imgKamparKiri, label: 'Sungai Kampar Kiri' }
 ];
 
 const AccordionGallery = ({
@@ -483,31 +488,11 @@ function DraggableCardItem({ title, image, className }) {
 
 function DraggableCardGallery() {
   const galleryItems = [
-    { 
-      title: "Ombak Bono Sungai Kampar", 
-      image: "https://images.unsplash.com/photo-1502680390469-be75c86b636f?auto=format&fit=crop&w=800&q=80", 
-      className: "pos-1" 
-    },
-    { 
-      title: "TN Tesso Nilo Elephant", 
-      image: "https://images.unsplash.com/photo-1557050543-4d5f4e07ef46?auto=format&fit=crop&w=800&q=80", 
-      className: "pos-2" 
-    },
-    { 
-      title: "Rimbang Baling Eco-Lodge", 
-      image: "https://images.unsplash.com/photo-1596394516093-501ba68a0ba6?auto=format&fit=crop&w=800&q=80", 
-      className: "pos-3" 
-    },
-    { 
-      title: "Hutan Hujan Gambut Riau", 
-      image: "https://images.unsplash.com/photo-1542273917363-3b1817f69a2d?auto=format&fit=crop&w=800&q=80", 
-      className: "pos-4" 
-    },
-    { 
-      title: "Sungai Kampar Kiri", 
-      image: "https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=800&q=80", 
-      className: "pos-5" 
-    }
+    { title: "Ombak Bono Sungai Kampar", image: imgKamparBono, className: "pos-1" },
+    { title: "TN Tesso Nilo Elephant", image: "https://images.unsplash.com/photo-1557050543-4d5f4e07ef46?auto=format&fit=crop&w=800&q=80", className: "pos-2" },
+    { title: "Rimbang Baling Eco-Lodge", image: imgRimbangBaling, className: "pos-3" },
+    { title: "Hutan Hujan Gambut Riau", image: "https://images.unsplash.com/photo-1542273917363-3b1817f69a2d?auto=format&fit=crop&w=800&q=80", className: "pos-4" },
+    { title: "Sungai Kampar Kiri", image: imgKamparKiri, className: "pos-5" }
   ];
 
   return (
@@ -570,7 +555,7 @@ function SectionHeading({ subtitle, title }) {
   );
 }
 
-// Data Paket Wisata Alam Riau
+// Data Paket Wisata Alam Riau (Menggunakan Gambar Lokal)
 const TOUR_PACKAGES = [
   {
     id: 1,
@@ -579,7 +564,7 @@ const TOUR_PACKAGES = [
     priceIDR: 4500000,
     priceUSD: 295,
     badge: "World Famous Wave",
-    image: "https://images.unsplash.com/photo-1502680390469-be75c86b636f?auto=format&fit=crop&w=800&q=80",
+    image: imgKamparBono,
     description: "Merasakan sensasi menaklukkan ombak sungai 'Seven Ghosts' (Bono) di Teluk Meranti, Sungai Kampar. Didampingi pemandu lokal profesional dan perahu penyelamat.",
     location: "Teluk Meranti, Pelalawan",
     duration: "3 Hari 2 Malam",
@@ -605,11 +590,45 @@ const TOUR_PACKAGES = [
     priceIDR: 2800000,
     priceUSD: 185,
     badge: "Carbon Neutral Trip",
-    image: "https://images.unsplash.com/photo-1596394516093-501ba68a0ba6?auto=format&fit=crop&w=800&q=80",
+    image: imgRimbangBaling,
     description: "Menyusuri sungai hulu dengan perahu tradisional (Pancung), menginap di eco-lodge kayu ramah lingkungan, dan mempelajari kearifan adat masyarakat Kampar Kiri.",
     location: "Suaka Margasatwa Rimbang Baling",
     duration: "3 Hari 2 Malam",
     certification: "Zero Plastic & Local Powered"
+  }
+];
+
+// Data Eco Merchandise Add-ons (Menggunakan Gambar Lokal)
+const ECO_MERCHANDISE = [
+  {
+    id: 101,
+    name: "Handmade Amigurumi Mascot",
+    category: "Community Craft",
+    priceIDR: 120000,
+    priceUSD: 8,
+    badge: "Handmade",
+    image: imgAmigurumi,
+    description: "Gantungan kunci rajut buatan tangan pengrajin lokal Riau bertema gajah & konservasi."
+  },
+  {
+    id: 102,
+    name: "Kopi Liberika Gambut Riau (250g)",
+    category: "Local Organic Food",
+    priceIDR: 85000,
+    priceUSD: 6,
+    badge: "100% Organic",
+    image: "https://images.unsplash.com/photo-1559056199-641a0ac8b55e?auto=format&fit=crop&w=600&q=80",
+    description: "Biji kopi organik pilihan hasil budidaya ramah lingkungan masyarakat gambut Riau."
+  },
+  {
+    id: 103,
+    name: "Syal Tenun Adat Melayu Riau",
+    category: "Cultural Heritage",
+    priceIDR: 250000,
+    priceUSD: 16,
+    badge: "Traditional Weave",
+    image: imgSyalTenun,
+    description: "Kain tenun motif tradisional buatan penenun perempuan desa adat Kampar Kiri."
   }
 ];
 
@@ -644,18 +663,24 @@ const ITINERARY_DAYS = [
     day: "Hari 1",
     title: "Kedatangan & Cultural Welcome",
     time: "09:00 - 18:00 WIB",
+    location: "Pekanbaru • Basecamp Ekowisata",
+    coords: "0.5104° N, 101.4383° E",
     description: "Penjemputan eksklusif di Bandara Sultan Syarif Kasim II Pekanbaru. Perjalanan darat ke basecamp ekowisata, dilanjutkan dengan makan siang hidangan Melayu tradisional dan briefing keselamatan."
   },
   {
     day: "Hari 2",
     title: "Ekspedisi Utama & Petualangan Alam",
     time: "06:00 - 17:00 WIB",
+    location: "Teluk Meranti (Bono) / TN Tesso Nilo",
+    coords: "0.1652° N, 102.5831° E",
     description: "Aksi utama! Mengarungi ombak Bono bersama tim rescue, atau jungle trekking di Taman Nasional Tesso Nilo bersama tim patroli konservasi gajah Sumatra."
   },
   {
     day: "Hari 3",
     title: "Aksi Konservasi & Kepulangan",
     time: "08:00 - 15:00 WIB",
+    location: "Kawasan Gambut & Airport Pekanbaru",
+    coords: "0.4520° N, 101.4420° E",
     description: "Program aksi nyata penanaman bibit pohon di lahan gambut, serah terima sertifikat karbon netral, dan pengantaran kembali ke Bandara Pekanbaru."
   }
 ];
@@ -809,11 +834,11 @@ function ThreeDCard({ item, formatPrice, onSelectTour }) {
           style={{ transform: isHovered ? 'translateZ(70px)' : 'translateZ(0px)' }}
         >
           <div>
-            <small>Mulai Dari / Orang</small>
+            <small>Mulai Dari</small>
             <div className="price-tag">{formatPrice(item.priceUSD, item.priceIDR)}</div>
           </div>
           <button className="btn-buy" onClick={() => onSelectTour(item)}>
-            <Compass size={16} /> Reservasi
+            <Compass size={16} /> Pesan
           </button>
         </div>
       </div>
@@ -846,25 +871,35 @@ export default function App() {
 
   return (
     <div className="app-container">
+      {/* FLOATING DIRECT WHATSAPP BOOKING BUTTON */}
+      <a 
+        href="https://wa.me/628123456789?text=Halo%20Riau%20Eco-Adventure!%20Saya%20ingin%20konsultasi%20paket%20wisata%20dan%20custom%20itinerary." 
+        target="_blank" 
+        rel="noreferrer" 
+        className="floating-wa-btn"
+        title="Chat WhatsApp Konsultan Ekowisata"
+      >
+        <MessageCircle size={22} />
+        <span className="wa-text-pop">Chat Konsultan</span>
+      </a>
+
       {/* NAVBAR */}
       <header className="glass-card nav-header">
         <div className="nav-content">
-          
-          {/* === 2. GANTI BAGIAN BRAND LAMA DI SINI === */}
           <div className="brand-logo">
             <img 
-              src={logoWeb} // Menggunakan gambar yang di-import
+              src={logoWeb} 
               alt="Riau Eco-Adventure Logo" 
               className="navbar-logo-img" 
             />
           </div>
-          {/* ========================================= */}
 
           <nav className="desktop-nav">
             <a href="#hero">Beranda</a>
             <a href="#bento">Komitmen Eco</a>
             <a href="#gallery">Galeri Alam</a>
             <a href="#products">Paket Ekspedisi</a>
+            <a href="#merch">Souvenir Adat</a>
             <a href="#faq">FAQ</a>
             <a href="#contact">Kontak</a>
           </nav>
@@ -890,9 +925,15 @@ export default function App() {
         </div>
       </header>
 
-      {/* HERO SECTION */}
+      {/* HERO SECTION WITH BONO TIDE TRACKER WIDGET */}
       <section id="hero" className="hero-section">
         <div className="hero-content">
+          <div className="tide-tracker-pill">
+            <span className="pulse-dot"></span>
+            <Waves size={15} />
+            <span>Prediksi Ombak Bono Puncak: <strong>12 September 2026 (Bulan Purnama)</strong></span>
+          </div>
+
           <div className="hero-glass-card">
             <span className="hero-badge">
               <Leaf size={14} /> Preserving Riau's Rainforests & Indigenous Rivers
@@ -966,7 +1007,7 @@ export default function App() {
             <span className="bento-tag">Dampak Komunitas</span>
             <h3>25% Biaya Tur untuk Dana Konservasi & Desa Adat</h3>
             <p>
-              Setiap pemesanan tur langsung mendanai unit patroli penyelamatan hutan hujan serta fasilitas sanitasi dan pendidikan desa di pelosok Riau.
+              Setiap pemesanan tur langsung mendanai unit patroli penyelamatkan hutan hujan serta fasilitas sanitasi dan pendidikan desa di pelosok Riau.
             </p>
           </div>
         </div>
@@ -1016,7 +1057,7 @@ export default function App() {
         </div>
       </section>
 
-      {/* ECO-ITINERARY TIMELINE */}
+      {/* ECO-ITINERARY TIMELINE WITH DYNAMIC MAP MARKER PREVIEW */}
       <section id="itinerary" className="itinerary-section">
         <SectionHeading 
           subtitle="Gambaran Pengalaman" 
@@ -1041,6 +1082,14 @@ export default function App() {
             <h3>{ITINERARY_DAYS[activeDay].title}</h3>
           </div>
           <p className="itinerary-desc">{ITINERARY_DAYS[activeDay].description}</p>
+          
+          <div className="itinerary-location-box">
+            <MapPin size={16} className="pin-icon-animated" />
+            <div>
+              <strong>Lokasi Fokus:</strong> {ITINERARY_DAYS[activeDay].location}
+              <small className="coords-tag">({ITINERARY_DAYS[activeDay].coords})</small>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -1058,6 +1107,30 @@ export default function App() {
               item={item} 
               formatPrice={formatPrice} 
               onSelectTour={setSelectedTour} 
+            />
+          ))}
+        </div>
+      </section>
+
+      {/* ECO-MERCHANDISE CROSS-SELLING SECTION WITH 3D TILT CARD */}
+      <section id="merch" className="merch-section">
+        <SectionHeading 
+          subtitle="Pemberdayaan Komunitas Adat" 
+          title="Oleh-Oleh & Kerajinan Ramah Lingkungan" 
+        />
+
+        <div className="products-grid">
+          {ECO_MERCHANDISE.map((merch) => (
+            <ThreeDCard 
+              key={merch.id} 
+              item={merch} 
+              formatPrice={formatPrice} 
+              onSelectTour={(item) => {
+                window.open(
+                  `https://wa.me/628123456789?text=Halo!%20Saya%20berminat%20membeli%20suvenir%20${encodeURIComponent(item.name)}`,
+                  '_blank'
+                );
+              }} 
             />
           ))}
         </div>
@@ -1164,7 +1237,7 @@ export default function App() {
         <div className="contact-container glass-card">
           <div className="contact-info">
             <h3>Ada Pertanyaan Khusus?</h3>
-            <p>Tim konsultan ekowisata kami siap membantu mengatur *custom itinerary*, paket rombongan/travel agent, atau menyesuaikan jadwal ekspedisi Anda.</p>
+            <p>Tim konsultan ekowisata kami siap membantu mengatur custom itinerary, paket rombongan/travel agent, atau menyesuaikan jadwal ekspedisi Anda.</p>
             
             <div className="contact-details">
               <div className="contact-detail-item">
@@ -1178,6 +1251,18 @@ export default function App() {
               <div className="contact-detail-item">
                 <MapPin size={20} className="contact-icon" />
                 <span>Pekanbaru & Teluk Meranti, Riau, Indonesia</span>
+              </div>
+              
+              <div className="contact-detail-item">
+                <Camera size={20} className="contact-icon" />
+                <a 
+                  href="https://www.instagram.com/wisataalamriau.id/" 
+                  target="_blank" 
+                  rel="noreferrer"
+                  className="contact-social-link"
+                >
+                  @wisataalamriau.id
+                </a>
               </div>
             </div>
           </div>
@@ -1287,18 +1372,59 @@ export default function App() {
         </div>
       )}
 
-      {/* FOOTER */}
+      {/* FOOTER EXTENDED */}
       <footer className="footer-section">
-        <div className="footer-content">
-          <div>
-            <h3>Riau Eco-Adventure Heritage</h3>
-            <p>Platform Digitalisasi Ekowisata Unggulan Daerah - Provinsi Riau, Indonesia.</p>
+        <div className="footer-container">
+          <div className="footer-grid">
+            <div className="footer-col brand-col">
+              <img src={logoWeb} alt="Riau Eco-Adventure Logo" className="footer-logo-img" />
+              <p className="footer-about">
+                Platform digitalisasi ekowisata unggulan Provinsi Riau. Menghubungkan wisatawan mancanegara dengan keajaiban alam Bono, konservasi gajah, dan suaka hutan hujan.
+              </p>
+            </div>
+
+            <div className="footer-col">
+              <h4>Navigasi Cepat</h4>
+              <ul className="footer-links">
+                <li><a href="#hero">Beranda</a></li>
+                <li><a href="#bento">Komitmen Eco</a></li>
+                <li><a href="#gallery">Galeri Visual</a></li>
+                <li><a href="#products">Paket Ekspedisi</a></li>
+                <li><a href="#faq">Pertanyaan Umum (FAQ)</a></li>
+              </ul>
+            </div>
+
+            <div className="footer-col">
+              <h4>Informasi Kontak</h4>
+              <ul className="footer-contact-list">
+                <li><Mail size={16} /> hello@riauecoadventure.id</li>
+                <li><Phone size={16} /> +62 812 3456 7890 (WA)</li>
+                <li><MapPin size={16} /> Pekanbaru & Teluk Meranti, Riau</li>
+                <li><Clock size={16} /> Senin - Minggu: 08.00 - 20.00 WIB</li>
+              </ul>
+            </div>
+
+            <div className="footer-col">
+              <h4>Ikuti Media Sosial</h4>
+              <p className="footer-social-desc">Dapatkan pembaruan foto dan jadwal fenomena ombak Bono setiap bulan.</p>
+              <div className="social-links">
+                <a 
+                  href="https://www.instagram.com/wisataalamriau.id/" 
+                  target="_blank" 
+                  rel="noreferrer" 
+                  title="Instagram Wisata Alam Riau"
+                  className="social-btn instagram"
+                >
+                  <Camera size={18} />
+                </a>
+                <a href="https://www.youtube.com/@KamarTravel" target="_blank" rel="noreferrer" className="social-btn"><Video size={18} /></a>
+                <a href="https://wa.me/628123456789" target="_blank" rel="noreferrer" className="social-btn"><MessageCircle size={18} /></a>
+              </div>
+            </div>
           </div>
-          <div className="social-links">
-            <a href="https://instagram.com" target="_blank" rel="noreferrer"><Camera size={20} /></a>
-            <a href="https://youtube.com" target="_blank" rel="noreferrer"><Video size={20} /></a>
-            <a href="https://linkedin.com" target="_blank" rel="noreferrer"><Share2 size={20} /></a>
-            <a href="https://wa.me/628123456789" target="_blank" rel="noreferrer"><MessageCircle size={20} /></a>
+
+          <div className="footer-bottom">
+            <p>&copy; {new Date().getFullYear()} Riau Eco-Adventure Heritage. All rights reserved.</p>
           </div>
         </div>
       </footer>
