@@ -5,6 +5,10 @@ import * as THREE from 'three';
 import { motion, AnimatePresence, useMotionValue, useSpring, useTransform, useVelocity, useAnimationControls, animate } from 'framer-motion';
 import { gsap } from 'gsap';
 import { Globe, Compass, Leaf, ShieldCheck, Heart, Menu, X, ArrowRight, Camera, Video, Share2, MessageCircle, Sparkles, Award, CheckCircle, Star, MapPin, Calendar, Clock, Plane, HelpCircle, ChevronDown, Check, Mail, Phone, Send, User, Move } from 'lucide-react';
+
+// === 1. IMPORT LOGO KAKAK DI SINI ===
+import logoWeb from './LogoWeb.png'; 
+
 import './App.css';
 
 // ============================================================================
@@ -845,13 +849,16 @@ export default function App() {
       {/* NAVBAR */}
       <header className="glass-card nav-header">
         <div className="nav-content">
+          
+          {/* === 2. GANTI BAGIAN BRAND LAMA DI SINI === */}
           <div className="brand-logo">
-            <div className="logo-box">R</div>
-            <div>
-              <h1 className="brand-title">Riau Eco-Adventure</h1>
-              <span className="brand-sub">HERITAGE ECOTOURISM</span>
-            </div>
+            <img 
+              src={logoWeb} // Menggunakan gambar yang di-import
+              alt="Riau Eco-Adventure Logo" 
+              className="navbar-logo-img" 
+            />
           </div>
+          {/* ========================================= */}
 
           <nav className="desktop-nav">
             <a href="#hero">Beranda</a>

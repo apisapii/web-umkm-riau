@@ -1393,3 +1393,66 @@ body {
     grid-template-columns: 1fr;
   }
 }
+
+/* TAMBAHKAN DI BAGIAN BAWAH src/App.css */
+
+.brand-logo {
+  display: flex;
+  align-items: center;
+  /* Hapus padding/margin lama jika ada */
+}
+
+.navbar-logo-img {
+  /* Atur tinggi maksimal logo agar navbar tetap ramping */
+  height: 40px; 
+  width: auto; /* Biarkan lebar menyesuaikan proporsi */
+  
+  /* Beri sedikit jarak jika perlu */
+  object-fit: contain; /* Pastikan gambar tidak terpotong */
+}
+
+/* Responsif untuk Mobile */
+@media (max-width: 768px) {
+  .navbar-logo-img {
+    height: 32px; /* Lebih kecil sedikit di mobile */
+  }
+}
+
+/* Perbaikan Formulir Modal Reservasi & Custom Itinerary */
+.order-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+  margin-top: 10px;
+}
+
+.order-form h4 {
+  font-size: 14px;
+  font-weight: 700;
+  color: #0f172a;
+  margin-bottom: 4px;
+}
+
+.order-form input {
+  width: 100%;
+  padding: 10px 14px;
+  border: 1px solid #cbd5e1;
+  border-radius: 10px;
+  font-size: 13px;
+  outline: none;
+  background-color: #ffffff;
+  color: #1e293b;
+  font-family: inherit;
+  box-sizing: border-box;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.order-form input:focus {
+  border-color: var(--primary-green);
+  box-shadow: 0 0 0 3px rgba(15, 82, 87, 0.15);
+}
+
+.order-form input[type="date"] {
+  color: #475569;
+}
