@@ -580,3 +580,75 @@ body {
     grid-template-columns: 1fr;
   }
 }
+
+/* Testimonials Infinite Marquee Styling */
+.testimonials-section {
+  padding: 60px 0;
+  overflow: hidden;
+}
+
+.marquee-wrapper {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  padding: 10px 0;
+}
+
+.marquee-track {
+  display: flex;
+  gap: 20px;
+  width: max-content;
+  animation: marqueeScroll 25s linear infinite;
+}
+
+.marquee-track:hover {
+  animation-play-state: paused;
+}
+
+.review-card {
+  width: 320px;
+  padding: 20px;
+  flex-shrink: 0;
+}
+
+.review-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 12px;
+}
+
+.review-header h4 {
+  font-size: 14px;
+  color: var(--text-dark);
+}
+
+.country-tag {
+  font-size: 11px;
+  color: #64748b;
+}
+
+.stars {
+  display: flex;
+  gap: 2px;
+}
+
+.review-card p {
+  font-size: 13px;
+  color: #475569;
+  font-style: italic;
+  line-height: 1.5;
+  margin-bottom: 12px;
+}
+
+.purchased-item {
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--primary-green);
+  text-transform: uppercase;
+}
+
+@keyframes marqueeScroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-33.33%); }
+}

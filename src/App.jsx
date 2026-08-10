@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Globe, ShoppingBag, Leaf, ShieldCheck, Heart, Menu, X, ArrowRight, Camera, Video, Share2, MessageCircle, Sparkles, Award, CheckCircle } from 'lucide-react';
+import { Globe, ShoppingBag, Leaf, ShieldCheck, Heart, Menu, X, ArrowRight, Camera, Video, Share2, MessageCircle, Sparkles, Award, CheckCircle, Star } from 'lucide-react';
 import './App.css';
 
 // Data Produk Kuliner Riau
@@ -45,6 +45,31 @@ const PRODUCTS = [
   }
 ];
 
+// Data Ulasan Konsumen Global
+const REVIEWS = [
+  {
+    id: 1,
+    name: "Kenji Sato",
+    country: "Tokyo, Japan 🇯🇵",
+    comment: "The Liberica Peatland Coffee has such a unique fruity jackfruit aroma! Truly a rare specialty coffee grade.",
+    product: "Peatland Liberica Coffee"
+  },
+  {
+    id: 2,
+    name: "Aisha Tan",
+    country: "Kuala Lumpur, Malaysia 🇲🇾",
+    comment: "Bolu Kemojo packaging is super modern. Tastes as fresh as buying directly in Pekanbaru!",
+    product: "Royal Bolu Kemojo"
+  },
+  {
+    id: 3,
+    name: "Lars Van Houten",
+    country: "Amsterdam, Netherlands 🇳🇱",
+    comment: "Gluten-free Meranti Sago Crisps are our new favorite healthy snack. Great quality control!",
+    product: "Meranti Sagu Crisps"
+  }
+];
+
 export default function App() {
   const [currency, setCurrency] = useState('USD');
   const [mobileMenu, setMobileMenu] = useState(false);
@@ -83,6 +108,7 @@ export default function App() {
             <a href="#hero">Beranda</a>
             <a href="#bento">Keunggulan</a>
             <a href="#products">Koleksi Ekspor</a>
+            <a href="#testimonials">Ulasan Global</a>
           </nav>
 
           <div className="nav-actions">
@@ -211,6 +237,38 @@ export default function App() {
               </div>
             </div>
           ))}
+        </div>
+      </section>
+
+      {/* 3. INFINITE MARQUEE TESTIMONIALS SECTION */}
+      <section id="testimonials" className="testimonials-section">
+        <div className="section-header">
+          <span>Suara Konsumen Global</span>
+          <h2>Diakui Penikmat Kuliner Mancanegara</h2>
+        </div>
+
+        <div className="marquee-wrapper">
+          <div className="marquee-track">
+            {[...REVIEWS, ...REVIEWS, ...REVIEWS].map((rev, index) => (
+              <div key={index} className="review-card glass-card">
+                <div className="review-header">
+                  <div>
+                    <h4>{rev.name}</h4>
+                    <span className="country-tag">{rev.country}</span>
+                  </div>
+                  <div className="stars">
+                    <Star size={14} fill="#D4AF37" color="#D4AF37" />
+                    <Star size={14} fill="#D4AF37" color="#D4AF37" />
+                    <Star size={14} fill="#D4AF37" color="#D4AF37" />
+                    <Star size={14} fill="#D4AF37" color="#D4AF37" />
+                    <Star size={14} fill="#D4AF37" color="#D4AF37" />
+                  </div>
+                </div>
+                <p>"{rev.comment}"</p>
+                <small className="purchased-item">Purchased: {rev.product}</small>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
