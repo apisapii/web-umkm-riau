@@ -1,94 +1,94 @@
 import React, { useState } from 'react';
-import { Globe, ShoppingBag, Leaf, ShieldCheck, Heart, Menu, X, ArrowRight, Camera, Video, Share2, MessageCircle, Sparkles, Award, CheckCircle, Star } from 'lucide-react';
+import { Globe, Compass, Leaf, ShieldCheck, Heart, Menu, X, ArrowRight, Camera, Video, Share2, MessageCircle, Sparkles, Award, CheckCircle, Star, MapPin, Calendar } from 'lucide-react';
 import './App.css';
 
-// Data Produk Kuliner Riau
-const PRODUCTS = [
+// Data Paket Wisata Alam Riau
+const TOUR_PACKAGES = [
   {
     id: 1,
-    name: "Royal Bolu Kemojo (Retort Export Pack)",
-    category: "Melayu Heritage Cake",
-    priceIDR: 120000,
-    priceUSD: 8,
-    badge: "Shelf-Stable 12 Months",
-    image: "https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=800&q=80",
-    description: "Kue tradisional khas Melayu Riau beraroma pandan suji alami. Dikemas dengan teknologi retort sterilisasi modern tanpa pengawet sintesis, siap diekspor ke mancanegara.",
-    origin: "Pekanbaru, Riau",
-    shelfLife: "12 Bulan (Suhu Ruang)",
-    certification: "Halal MUI, BPOM, HACCP Export Grade"
+    name: "Kampar Bono River Surfing Expedition",
+    category: "Extreme Eco-Adventure",
+    priceIDR: 4500000,
+    priceUSD: 295,
+    badge: "World Famous Wave",
+    image: "https://images.unsplash.com/photo-1502680390469-be75c86b636f?auto=format&fit=crop&w=800&q=80",
+    description: "Merasakan sensasi menaklukkan ombak sungai 'Seven Ghosts' (Bono) di Teluk Meranti, Sungai Kampar. Didampingi pemandu lokal profesional dan perahu penyelamat.",
+    location: "Teluk Meranti, Pelalawan",
+    duration: "3 Hari 2 Malam",
+    certification: "Certified Safety & River Guides"
   },
   {
     id: 2,
-    name: "Meranti Sagu Crisps",
-    category: "Gluten-Free Superfood",
-    priceIDR: 45000,
-    priceUSD: 3,
-    badge: "Eco-Friendly Farmed",
-    image: "https://images.unsplash.com/photo-1599490659213-e2b9527bd087?auto=format&fit=crop&w=800&q=80",
-    description: "Camilan renyah dari olahan pati sagu terbaik Kepulauan Meranti Riau. Sumber serat alami, bebas gluten, dan aman untuk gaya hidup sehat konsumen global.",
-    origin: "Selatpanjang, Kepulauan Meranti",
-    shelfLife: "8 Bulan",
-    certification: "Gluten-Free Certified, Organic Local"
+    name: "Tesso Nilo Elephant Conservation Safari",
+    category: "Wildlife & Edu-Tourism",
+    priceIDR: 3200000,
+    priceUSD: 210,
+    badge: "100% Ethical Wildlife",
+    image: "https://images.unsplash.com/photo-1557050543-4d5f4e07ef46?auto=format&fit=crop&w=800&q=80",
+    description: "Jelajah hutan hujan Sumatra, berinteraksi langsung dengan Gajah Sumatra dalam program konservasi, dan mendukung tim patroli pencegahan perambahan hutan.",
+    location: "TN Tesso Nilo, Riau",
+    duration: "2 Hari 1 Malam",
+    certification: "Conservation Partner Approved"
   },
   {
     id: 3,
-    name: "Peatland Liberica Roasted Beans",
-    category: "Specialty Peatland Coffee",
-    priceIDR: 185000,
-    priceUSD: 12,
-    badge: "Sustainable Peatland",
-    image: "https://images.unsplash.com/photo-1559056199-641a0ac8b55e?auto=format&fit=crop&w=800&q=80",
-    description: "Biji kopi Liberika unik yang tumbuh di lahan gambut Riau. Menghasilkan cita rasa buah nangka (jackfruit notes) dan tingkat keasaman rendah yang diminati pasar Eropa.",
-    origin: "Desa Kedabu Rapat, Meranti",
-    shelfLife: "12 Bulan (Sealed Bag)",
-    certification: "Fair Trade, Specialty Coffee Grade 1"
+    name: "Rimbang Baling Rainforest Eco-Lodge",
+    category: "Cultural & Forest Lodge",
+    priceIDR: 2800000,
+    priceUSD: 185,
+    badge: "Carbon Neutral Trip",
+    image: "https://images.unsplash.com/photo-1596394516093-501ba68a0ba6?auto=format&fit=crop&w=800&q=80",
+    description: "Menyusuri sungai hulu dengan perahu tradisional (Pancung), menginap di *eco-lodge* kayu ramah lingkungan, dan mempelajari kearifan adat masyarakat Kampar Kiri.",
+    location: "Suaka Margasatwa Rimbang Baling",
+    duration: "3 Hari 2 Malam",
+    certification: "Zero Plastic & Local Powered"
   }
 ];
 
-// Data Ulasan Konsumen Global
+// Data Ulasan Wisatawan Internasional
 const REVIEWS = [
   {
     id: 1,
-    name: "Kenji Sato",
-    country: "Tokyo, Japan 🇯🇵",
-    comment: "The Liberica Peatland Coffee has such a unique fruity jackfruit aroma! Truly a rare specialty coffee grade.",
-    product: "Peatland Liberica Coffee"
+    name: "David Miller",
+    country: "Sydney, Australia 🇦🇺",
+    comment: "Riding the Bono river wave was the most surreal surfing experience of my life! Highly organized and safe.",
+    product: "Kampar Bono Surfing Expedition"
   },
   {
     id: 2,
-    name: "Aisha Tan",
-    country: "Kuala Lumpur, Malaysia 🇲🇾",
-    comment: "Bolu Kemojo packaging is super modern. Tastes as fresh as buying directly in Pekanbaru!",
-    product: "Royal Bolu Kemojo"
+    name: "Elena Rostova",
+    country: "Berlin, Germany 🇩🇪",
+    comment: "Supporting elephant conservation while exploring pristine rainforest. Beautiful eco-lodge and warm local guides!",
+    product: "Tesso Nilo Elephant Safari"
   },
   {
     id: 3,
-    name: "Lars Van Houten",
-    country: "Amsterdam, Netherlands 🇳🇱",
-    comment: "Gluten-free Meranti Sago Crisps are our new favorite healthy snack. Great quality control!",
-    product: "Meranti Sagu Crisps"
+    name: "Chloe Dubois",
+    country: "Paris, France 🇫🇷",
+    comment: "The river boat trip to Rimbang Baling was unforgettable. True sustainable tourism empowering local tribes.",
+    product: "Rimbang Baling Eco-Lodge"
   }
 ];
 
 export default function App() {
   const [currency, setCurrency] = useState('USD');
   const [mobileMenu, setMobileMenu] = useState(false);
-  const [selectedProduct, setSelectedProduct] = useState(null);
-  const [orderSubmitted, setOrderSubmitted] = useState(false);
+  const [selectedTour, setSelectedTour] = useState(null);
+  const [bookingSubmitted, setBookingSubmitted] = useState(false);
 
   // Format Mata Uang
   const formatPrice = (usd, idr) => {
     return currency === 'USD' ? `$${usd} USD` : `Rp ${idr.toLocaleString('id-ID')}`;
   };
 
-  const handleOrderSubmit = (e) => {
+  const handleBookingSubmit = (e) => {
     e.preventDefault();
-    setOrderSubmitted(true);
+    setBookingSubmitted(true);
   };
 
   const closeModal = () => {
-    setSelectedProduct(null);
-    setOrderSubmitted(false);
+    setSelectedTour(null);
+    setBookingSubmitted(false);
   };
 
   return (
@@ -99,16 +99,16 @@ export default function App() {
           <div className="brand-logo">
             <div className="logo-box">R</div>
             <div>
-              <h1 className="brand-title">Riau Gourmet</h1>
-              <span className="brand-sub">HERITAGE</span>
+              <h1 className="brand-title">Riau Eco-Adventure</h1>
+              <span className="brand-sub">HERITAGE ECOTOURISM</span>
             </div>
           </div>
 
           <nav className="desktop-nav">
             <a href="#hero">Beranda</a>
-            <a href="#bento">Keunggulan</a>
-            <a href="#products">Koleksi Ekspor</a>
-            <a href="#testimonials">Ulasan Global</a>
+            <a href="#bento">Komitmen Eco</a>
+            <a href="#products">Paket Ekspedisi</a>
+            <a href="#testimonials">Ulasan Wisatawan</a>
           </nav>
 
           <div className="nav-actions">
@@ -136,28 +136,28 @@ export default function App() {
       <section id="hero" className="hero-section">
         <div className="hero-content">
           <span className="hero-badge">
-            <Leaf size={14} /> Empowering 80+ Local Artisans in Riau
+            <Leaf size={14} /> Preserving Riau's Rainforests & Indigenous Rivers
           </span>
           <h2 className="hero-title">
-            Authentic Taste of Riau, <br />
-            <span className="highlight-text">Crafted for Global Gourmet.</span>
+            Wild Riau Expeditions, <br />
+            <span className="highlight-text">Designed for Global Eco-Travelers.</span>
           </h2>
           <p className="hero-desc">
-            Mengangkat kelezatan kuliner tradisional Melayu Riau dan komoditas sagu/kopi gambut lokal ke panggung internasional melalui teknologi pengemasan ekspor dan kepastian mutu.
+            Menghubungkan wisatawan dunia dengan keajaiban alam Riau — mulai dari ombak sungai Bono, habitat gajah Sumatra, hingga keasrian hutan hujan yang terlindungi.
           </p>
           <div className="hero-buttons">
             <a href="#products" className="btn-primary">
-              Jelajahi Produk <ArrowRight size={16} />
+              Jelajahi Paket Tur <ArrowRight size={16} />
             </a>
           </div>
         </div>
       </section>
 
-      {/* BENTO GRID SECTION */}
+      {/* BENTO GRID VALUE PROPOSITION SECTION */}
       <section id="bento" className="bento-section">
         <div className="section-header">
-          <span>Keunggulan Strategis</span>
-          <h2>Mengapa Riau Gourmet Layak Standar Global?</h2>
+          <span>Prinsip Ekowisata</span>
+          <h2>Mengapa Memilih Riau Eco-Adventure?</h2>
         </div>
 
         <div className="bento-grid">
@@ -165,21 +165,21 @@ export default function App() {
             <div className="bento-icon-box">
               <ShieldCheck size={24} />
             </div>
-            <span className="bento-tag">Inovasi Teknologi Pangan</span>
-            <h3>Teknologi Retort Packaging (Awet 12 Bulan)</h3>
+            <span className="bento-tag">Sertifikasi Internasional</span>
+            <h3>100% Carbon-Neutral Travel & Ethical Wildlife</h3>
             <p>
-              Kuliner basah khas Melayu seperti Bolu Kemojo kini diproses dengan teknik sterilisasi bertemperatur tinggi. Produk tetap segar dan higienis tanpa menggunakan pengawet kimiawi, siap didistribusikan ke jaringan ritel global.
+              Seluruh perjalanan dikompensasi dengan program penanaman pohon di hutan gambut. Kami menerapkan standar etika ketat tanpa eksploitasi satwa liar.
             </p>
           </div>
 
           <div className="bento-card glass-card">
             <div className="bento-icon-box">
-              <Leaf size={24} />
+              <Compass size={24} />
             </div>
-            <span className="bento-tag">Eco-Friendly</span>
-            <h3>Sustainable Peatland Coffee</h3>
+            <span className="bento-tag">Pemandu Adat</span>
+            <h3>Native Rainforest Guides</h3>
             <p>
-              Budi daya Kopi Liberika yang membantu menjaga kelembapan ekosistem lahan gambut Riau serta mencegah kebakaran hutan.
+              Dipandu langsung oleh warga lokal dan pemuda pemudi adat yang mengenal navigasi hutan serta sejarah sungai secara mendalam.
             </p>
           </div>
 
@@ -187,10 +187,10 @@ export default function App() {
             <div className="bento-icon-box">
               <Sparkles size={24} />
             </div>
-            <span className="bento-tag">Tren Pasar Sehat</span>
-            <h3>Gluten-Free Meranti Sagu</h3>
+            <span className="bento-tag">Fenomena Langka</span>
+            <h3>Home of 'Seven Ghosts' Tidal Bore</h3>
             <p>
-              Mengolah pati sagu Kepulauan Meranti menjadi camilan sehat serat tinggi untuk memenuhi permintaan pasar makanan bebas gluten di Eropa dan Amerika.
+              Akses eksklusif melihat dan mengarungi fenomena ombak Bono yang hanya ada di dua tempat di seluruh dunia.
             </p>
           </div>
 
@@ -198,24 +198,24 @@ export default function App() {
             <div className="bento-icon-box">
               <Award size={24} />
             </div>
-            <span className="bento-tag">Dampak Sosial Ekonomi</span>
-            <h3>Pemberdayaan Petani & UMKM Lokal 3.5x Lebih Sejahtera</h3>
+            <span className="bento-tag">Dampak Komunitas</span>
+            <h3>25% Biaya Tur untuk Dana Konservasi & Desa Adat</h3>
             <p>
-              Model bisnis langsung ke konsumen (*Direct-to-Consumer Export*) memotong rantai tengkulak. Keuntungan penjualan dialokasikan langsung untuk peningkatan taraf hidup keluarga petani sagu dan pembuat kue tradisional di Riau.
+              Setiap pemesanan tur langsung mendanai unit patroli penyelamatan hutan hujan serta fasilitas sanitasi dan pendidikan desa di pelosok Riau.
             </p>
           </div>
         </div>
       </section>
 
-      {/* PRODUCT GRID SECTION */}
+      {/* TOUR PACKAGES SECTION */}
       <section id="products" className="products-section">
         <div className="section-header">
-          <span>Katalog Utama</span>
-          <h2>Kuliner Riau Kualitas Ekspor</h2>
+          <span>Katalog Ekspedisi</span>
+          <h2>Paket Wisata Alam Unggulan Riau</h2>
         </div>
 
         <div className="products-grid">
-          {PRODUCTS.map((item) => (
+          {TOUR_PACKAGES.map((item) => (
             <div key={item.id} className="product-card">
               <div className="card-image-wrapper">
                 <img src={item.image} alt={item.name} />
@@ -227,11 +227,11 @@ export default function App() {
                 <p>{item.description}</p>
                 <div className="card-footer">
                   <div>
-                    <small>Harga Ekspor</small>
+                    <small>Mulai Dari / Orang</small>
                     <div className="price-tag">{formatPrice(item.priceUSD, item.priceIDR)}</div>
                   </div>
-                  <button className="btn-buy" onClick={() => setSelectedProduct(item)}>
-                    <ShoppingBag size={16} /> Pesan
+                  <button className="btn-buy" onClick={() => setSelectedTour(item)}>
+                    <Compass size={16} /> Reservasi
                   </button>
                 </div>
               </div>
@@ -240,11 +240,11 @@ export default function App() {
         </div>
       </section>
 
-      {/* 3. INFINITE MARQUEE TESTIMONIALS SECTION */}
+      {/* TESTIMONIALS MARQUEE */}
       <section id="testimonials" className="testimonials-section">
         <div className="section-header">
-          <span>Suara Konsumen Global</span>
-          <h2>Diakui Penikmat Kuliner Mancanegara</h2>
+          <span>Ulasan Wisatawan Dunia</span>
+          <h2>Pengalaman Tak Terlupakan di Alam Riau</h2>
         </div>
 
         <div className="marquee-wrapper">
@@ -265,48 +265,45 @@ export default function App() {
                   </div>
                 </div>
                 <p>"{rev.comment}"</p>
-                <small className="purchased-item">Purchased: {rev.product}</small>
+                <small className="purchased-item">Booked: {rev.product}</small>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* MODAL POPUP PRODUCT ORDER */}
-      {selectedProduct && (
+      {/* MODAL POPUP TOUR RESERVATION */}
+      {selectedTour && (
         <div className="modal-overlay" onClick={closeModal}>
           <div className="modal-content glass-card" onClick={(e) => e.stopPropagation()}>
             <button className="modal-close" onClick={closeModal}>
               <X size={20} />
             </button>
 
-            {!orderSubmitted ? (
+            {!bookingSubmitted ? (
               <div className="modal-body">
                 <div className="modal-image">
-                  <img src={selectedProduct.image} alt={selectedProduct.name} />
+                  <img src={selectedTour.image} alt={selectedTour.name} />
                 </div>
                 <div className="modal-details">
-                  <span className="modal-badge">{selectedProduct.badge}</span>
-                  <h2>{selectedProduct.name}</h2>
-                  <div className="modal-price">{formatPrice(selectedProduct.priceUSD, selectedProduct.priceIDR)}</div>
-                  <p className="modal-desc">{selectedProduct.description}</p>
+                  <span className="modal-badge">{selectedTour.badge}</span>
+                  <h2>{selectedTour.name}</h2>
+                  <div className="modal-price">{formatPrice(selectedTour.priceUSD, selectedTour.priceIDR)}</div>
+                  <p className="modal-desc">{selectedTour.description}</p>
 
                   <div className="modal-specs">
-                    <div><strong>Asal Daerah:</strong> {selectedProduct.origin}</div>
-                    <div><strong>Daya Tahan:</strong> {selectedProduct.shelfLife}</div>
-                    <div><strong>Sertifikasi:</strong> {selectedProduct.certification}</div>
+                    <div><strong>Lokasi:</strong> {selectedTour.location}</div>
+                    <div><strong>Durasi Tur:</strong> {selectedTour.duration}</div>
+                    <div><strong>Jaminan Standar:</strong> {selectedTour.certification}</div>
                   </div>
 
-                  <form className="order-form" onSubmit={handleOrderSubmit}>
-                    <h4>Simulasi Permintaan Sampel Ekspor</h4>
-                    <input type="text" placeholder="Nama Lengkap / Buyers Name" required />
-                    <input type="email" placeholder="Email Kontak" required />
-                    <select>
-                      <option>Tujuan Pengiriman: Domestik (Indonesia)</option>
-                      <option>Tujuan Pengiriman: Ekspor (International Cargo)</option>
-                    </select>
+                  <form className="order-form" onSubmit={handleBookingSubmit}>
+                    <h4>Formulir Reservasi & Custom Itinerary</h4>
+                    <input type="text" placeholder="Nama Lengkap / Visitor Name" required />
+                    <input type="email" placeholder="Email untuk Konfirmasi Booking" required />
+                    <input type="date" required />
                     <button type="submit" className="btn-submit-order">
-                      Kirim Inquiry Sampel
+                      Cek Ketersediaan Tanggal & Booking
                     </button>
                   </form>
                 </div>
@@ -314,9 +311,9 @@ export default function App() {
             ) : (
               <div className="modal-success">
                 <CheckCircle size={48} className="success-icon" />
-                <h3>Inquiry Ekspor Terkirim!</h3>
+                <h3>Permintaan Reservasi Terkirim!</h3>
                 <p>
-                  Terima kasih. Permintaan sampel produk <strong>{selectedProduct.name}</strong> telah diteruskan ke sistem logistik Riau Gourmet Heritage.
+                  Terima kasih! Tim konsultan Riau Eco-Adventure akan menghubungi Anda via email dengan rincian *itinerary* dan instruksi penjemputan dari Bandara Sultan Syarif Kasim II Pekanbaru.
                 </p>
                 <button className="btn-primary" onClick={closeModal}>Tutup</button>
               </div>
@@ -329,8 +326,8 @@ export default function App() {
       <footer className="footer-section">
         <div className="footer-content">
           <div>
-            <h3>Riau Gourmet Heritage</h3>
-            <p>Digitalisasi Kuliner Unggulan Daerah - Pekanbaru & Kepulauan Meranti, Riau.</p>
+            <h3>Riau Eco-Adventure Heritage</h3>
+            <p>Platform Digitalisasi Ekowisata Unggulan Daerah - Provinsi Riau, Indonesia.</p>
           </div>
           <div className="social-links">
             <a href="https://instagram.com" target="_blank" rel="noreferrer"><Camera size={20} /></a>
